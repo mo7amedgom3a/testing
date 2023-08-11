@@ -1,38 +1,30 @@
 #ifndef SHELL_H
 #define SHELL_H
 
-/*---LIBRARIES---*/
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/wait.h>
 
-/*---Macros---*/
 #define TDELIM " \t\r\n\a\""
 /*global variable*/
 extern char **environ;
 
-/*---PROTOTYPES---*/
-/* main.c */
 void interactive_mode(void);
 void no_interactive_mode(void);
 
-/* shell_interactive.c */
-char *readline(void);
-char **split(char *line);
-int execute_proccess(char **args);
+char *readline();
+char **split(char *input);
+int execute_proccess(char **argv);
 
-/* execute_args */
-int create_process(char **args);
+int create_process(char **argv);
 
-/* shell_no_interactive */
-char *readStream(void);
+char *readStream();
 
-/*---Builtin function---*/
-int _cd(char **args);
-int _exit(char **args);
-int _env(char **args);
-int _help(char **args);
+int _cd(char **argv);
+int _exit(char **argv);
+int _env(char **argv);
+int _help(char **argv);
 
 #endif
